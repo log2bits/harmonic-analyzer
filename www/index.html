@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Harmonic Analyzer</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px;
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        canvas { 
+            border: 1px solid #444; 
+            margin: 10px 0;
+            background: #000;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:disabled {
+            background: #666;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Harmonic Analyzer</h1>
+    
+    <div class="controls">
+        <button id="startBtn">Start Recording</button>
+        <button id="stopBtn" disabled>Stop Recording</button>
+        <button id="generateScaleBtn">Generate Optimal Scale</button>
+    </div>
+
+    <div>
+        <h3>Frequency Spectrum</h3>
+        <canvas id="spectrumCanvas" width="800" height="200"></canvas>
+    </div>
+
+    <div>
+        <h3>Dissonance Graph</h3>
+        <canvas id="dissonanceCanvas" width="800" height="200"></canvas>
+    </div>
+
+    <div id="results">
+        <h3>Analysis Results</h3>
+        <p>Fundamental Frequency: <span id="fundamentalFreq">--</span> Hz</p>
+        <p>Harmonics: <span id="harmonics">--</span></p>
+        <p>Generated Scale: <span id="generatedScale">--</span></p>
+    </div>
+
+    <script type="module">
+        // TODO: Import and initialize your AudioProcessor
+        // TODO: Set up event listeners for buttons
+        // TODO: Handle audio analysis and visualization
+        
+        console.log('Ready to implement audio analysis!');
+    </script>
+</body>
+</html>

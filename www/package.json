@@ -1,0 +1,14 @@
+{
+  "name": "harmonic-analyzer-web",
+  "version": "0.1.0",
+  "description": "Web interface for harmonic analyzer",
+  "main": "index.html",
+  "scripts": {
+    "build": "wasm-pack build --target web --out-dir www/pkg",
+    "serve": "python3 -m http.server 8000",
+    "test": "wasm-pack test --headless --firefox"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

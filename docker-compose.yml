@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # Development server
+  dev:
+    build:
+      context: .
+      target: development
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./www:/app/www
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./Cargo.toml:/app/Cargo.toml
+    environment:
+      - RUST_LOG=debug
+    command: python3 -m http.server 8000 --directory www
+
+  # Rust development container (for rebuilding WASM)
+  rust-dev:
+    build:
+      context: .
+      target: wasm-builder
+    volumes:
+      - ./:/app
+      - cargo-cache:/usr/local/cargo/registry
+    working_dir: /app
+    command: tail -f /dev/null  # Keep container running
+    environment:
+      - RUST_LOG=debug
+
+  # Production server
+  prod:
+    build:
+      context: .
+      target: production
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+  # Testing container
+  test:
+    build:
+      context: .
+      target: wasm-builder
+    volumes:
+      - ./:/app
+      - cargo-cache:/usr/local/cargo/registry
+    working_dir: /app
+    command: cargo test
+    environment:
+      - RUST_LOG=debug
+
+volumes:
+  cargo-cache:
